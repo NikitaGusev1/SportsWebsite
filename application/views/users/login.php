@@ -42,6 +42,7 @@
 							</form>
 						</div>
 						<p class="footInfo">Don't have an account? <a href="<?php echo site_url().'/users/registration' ?>">Register here</a></p>
+                                                
 					</div>
 				</div>
 			</div>

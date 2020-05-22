@@ -52,6 +52,10 @@ class Users extends CI_Controller {
                 if($checkLogin){
                     $this->session->set_userdata('isUserLoggedIn',TRUE);
                     $this->session->set_userdata('userId',$checkLogin['id']);
+                    $this->session->set_userdata('name',$checkLogin['name']);
+                    $this->session->set_userdata('type',$checkLogin['type']);
+                    $this->session->set_userdata('password',$checkLogin['password']);
+                    
                     if($checkLogin['type']=="admin")
                     {
                         redirect('mainpageAdmin');
@@ -128,6 +132,43 @@ class Users extends CI_Controller {
             return FALSE;
         } else {
             return TRUE;
+        }   
+    }
+//    public function _passcheck($passconf){
+//        $oldpass = $this->session->password; 
+//        if($oldpass== md5($this->input->post($passconf)))
+//        {
+//       $this->form_validation->set_message('_passcheck', 'New password can\'t match the current password');
+//       return false;
+//   }
+//   return true;
+//    }
+        
+    
+    public function changep() {
+        if($this->input->post('loginSubmit')){
+//            $this->form_validation->set_rules('CurrentPassword', 'CurrentPassword', 'required');
+            $this->form_validation->set_rules('password', 'New Password', 'required');
+            $this->form_validation->set_rules('passconf', 'Confirm New Password', 'required|matches[password]');
+            
+            $userData = array( 
+                        'password' => md5($this->input->post('password')),
+                        'passconf' => md5($this->input->post('passconf'))
+                        );
+            if ($this->form_validation->run() == TRUE)
+                {
+                    $changed = $this->user->changep($userData);
+                    if(($changed) == TRUE) {
+                        redirect("users/login/");
+                    }
+                    
+                }
+                else
+                {
+                    
+                    redirect('failure');  
+                }
         }
+        $this->load->view('users/changep');
     }
 }

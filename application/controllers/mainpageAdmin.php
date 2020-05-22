@@ -3,28 +3,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MainpageAdmin extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	function __construct() {
+        parent::__construct();
+        
+        $this->load->model('FetchingDataMainpage');
+        
+    }
 	public function index()
 	{
-		
-                 $this->load->database();
-//                 $result['data'] = $this->FetchingDataMainpage -> displayrecords();
-                 $this->load->view('mainpageAdmin');
+            $result = $this->FetchingDataMainpage->displayTeams();
+            $events = $this->FetchingDataMainpage->getEvents();
+            //$maxid = $this->FetchingDataMainpage->maxId();
+            if(!empty($events)){
+                $data['events'] = $events;
+            }
+            if(!empty($result)){
+                $data['teams'] = $result;
+            //$this->load->view('mainpageAdmin', $data);
 	}
+        $this->load->view('mainpageAdmin', $data);
+        }
+        public function savingdata() {
+            $data = array(
+              'homeTeam' => $this->input->post('homeTeam'),
+              'awayTeam' => $this->input->post('awayTeam')
+            );
+            $this->db->insert('events',$data);
+            redirect("mainpageAdmin");
+        }
 //        public function teamname()
 //        {
 //            $teamname = $this ->input->post('teamname');

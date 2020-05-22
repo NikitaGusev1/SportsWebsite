@@ -95,9 +95,9 @@
                                     </div>
                                     <div class="collapse navbar-collapse js-navbar-collapse">
                                        <ul class="nav navbar-nav">
-                                          <li class="active"><a href="index.html">Home</a></li>
-                                          <li><a href="about.html">About</a></li>
-                                          <li><a href="team.html">Team</a></li>
+                                          
+                                          <li><a href="<?php echo site_url().'/Favourites' ?>">Favourites</a></li>
+                                          <li><a href="<?php echo site_url().'/Ajaxsearch' ?>">Teams</a></li>
                                           <li><a href="news.html">News</a></li>
                                           <li class="dropdown mega-dropdown">
                                              <a href="match" class="dropdown-toggle" data-toggle="dropdown">Match<span class="caret"></span></a>				
@@ -150,7 +150,7 @@
                                              </ul>
                                           </li>
                                           <li><a href="blog.html">Blog</a></li>
-                                          <li><a href="contact.html">contact</a></li>
+                                          <li><a href=<?php echo site_url().'/users/changep' ?>>Change Password</a></li>
                                        </ul>
                                     </div>
                                     <!-- /.nav-collapse -->
@@ -267,7 +267,7 @@
                            <ul>
                               <li>
                                  <img src="<?php echo base_url().'assets/images/img-03.png'?>" alt="">
-                                 <span>Football Team</span>
+                                 <a href="<?php echo site_url().'/clubPage' ?>"><span><?php echo $teams[1] -> name?></span></a>
                               </li>
                               <li class="vs"><span>vs</span></li>
                               <li>
@@ -315,29 +315,32 @@
                            <ul>
                               <li>
                                  <img src="<?php echo base_url().'assets/images/img-01_002.png'?>" alt="">
-                                 <span>Portugal</span>
+                                 <span><?php echo end($events)->homeTeam?></span>
                               </li>
                               <li class="vs"><span>vs</span></li>
                               <li>
                                  <img src="<?php echo base_url().'assets/images/img-02.png'?>" alt="">
-                                 <span>Germany</span>
+                                 <span><?php echo end($events)->awayTeam?></span>
                               </li>
                            </ul>
                            <ul>
-                              <li>
+                             <li>
                                  <img src="<?php echo base_url().'assets/images/img-03_002.png'?>" alt="">
-                                 <span>Portugal</span>
+                                 <a href="<?php echo site_url().'/clubPage/event1' ?>">
+                                 <span>Liverpool</span>
                               </li>
                               <li class="vs"><span>vs</span></li>
                               <li>
                                  <img src="<?php echo base_url().'assets/images/img-04_003.png'?>" alt="">
-                                 <span>Germany</span>
+                                 <span>Manchester United</span>
+                                 </a>
                               </li>
                            </ul>
                            <ul>
                               <li>
                                  <img src="<?php echo base_url().'assets/images/img-05_002.png'?>" alt="">
-                                 <span>Portugal</span>
+                                 <a href="<?php echo site_url().'/clubPage/event2' ?>">
+                                 <span>Napoli</span>
                               </li>
                               <li class="vs"><span>vs</span></li>
                               <li>

@@ -12,8 +12,7 @@ foreach($css_files as $file): ?>
 	<div>
 		<a href='<?php echo site_url('users/login')?>'>Logout</a> |
 		<a href='<?php echo site_url('mainpageAdmin')?>'>Back to the main page</a> |
-                <a href='<?php echo site_url('eventCRUD/events')?>'>Events</a>
-		
+		<a href='<?php echo site_url('dashboard/users')?>'>Users</a>
 		
 	</div>
 	<div style='height:20px;'></div>  

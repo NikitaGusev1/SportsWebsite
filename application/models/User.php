@@ -64,5 +64,12 @@ class User extends CI_Model{
             return false;
         }
     }
+    public function changep($data = array()) {
+        $pass = $data['password'];
+        $this->db->set('password',$pass);
+        $this->db->where('id', $this->session->userdata('userId'));
+        $this->db->update($this->userTbl);
+        redirect("users/login");
+    }
 
 }
